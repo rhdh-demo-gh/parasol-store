@@ -5,6 +5,9 @@ import org.globex.retail.store.catalog.model.entity.Product;
 public class ProductMapper {
 
     public static ProductDto toDto(Product product) {
+        if (product == null) {
+            return null;
+        }
         return ProductDto.builder()
                 .withItemId(product.itemId)
                 .withName(product.name)
@@ -15,6 +18,9 @@ public class ProductMapper {
     }
 
     public static ProductDto toDto(Product product, int quantity) {
+        if (product == null) {
+            return null;
+        }
         return ProductDto.builder()
                 .withItemId(product.itemId)
                 .withName(product.name)

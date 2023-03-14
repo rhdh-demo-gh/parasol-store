@@ -5,6 +5,9 @@ import org.globex.retail.store.inventory.model.entity.Inventory;
 public class InventoryMapper {
 
     public static InventoryDto toDto(Inventory inventory) {
+        if (inventory == null) {
+            return null;
+        }
         return InventoryDto.builder()
                 .withId(inventory.id)
                 .withItemId(inventory.itemId)
