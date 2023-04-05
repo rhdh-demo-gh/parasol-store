@@ -105,4 +105,25 @@ public class CatalogResource {
                     return Response.serverError().build();
                 });
     }
+
+    @GET
+    @Path("/category/list")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Uni<Response> getCategoryList() {
+        
+        return Uni.createFrom().voidItem().emitOn(Infrastructure.getDefaultWorkerPool())
+                .onItem().transform(catalogList -> catalogService.getCategoryList())    
+                .onItem().transform(catalogList -> {
+                    if (catalogList == null) {
+                        return Response.status(Response.Status.NOT_FOUND).build();
+                    } else {
+                        return Response.ok(catalogList).build();
+                    }
+                })
+                .onFailure().recoverWithItem(throwable -> {
+                    LOGGER.error("Exception while fetching category list", throwable);
+                    return Response.serverError().build();
+                });          
+            }     
+        
 }
