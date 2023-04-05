@@ -6,6 +6,7 @@ import org.globex.retail.store.catalog.model.dto.ProductMapper;
 import org.globex.retail.store.catalog.model.entity.Product;
 import org.globex.retail.store.inventory.model.dto.InventoryDto;
 import org.globex.retail.store.inventory.service.InventoryService;
+import org.globex.retail.store.catalog.model.entity.Category;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -98,6 +99,11 @@ public class CatalogService {
 
     private List<ProductDto> toDto(List<Product> productList) {
         return productList.stream().map(ProductMapper::toDto).collect(Collectors.toList());
+    }
+
+    
+    public List<Category> getCategoryList() {
+        return Category.listAll();
     }
 
 }
