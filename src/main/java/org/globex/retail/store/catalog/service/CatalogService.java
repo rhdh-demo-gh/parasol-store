@@ -103,9 +103,7 @@ public class CatalogService {
 
     
     public List<Category> getCategoryList() {
-        List<Category> categoryList = Category.listAll();
-        
-        return categoryList;
+        return Category.listAll();
     }
 
 }

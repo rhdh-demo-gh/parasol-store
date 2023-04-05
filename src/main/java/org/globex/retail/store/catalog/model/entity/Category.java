@@ -7,8 +7,6 @@ import javax.persistence.*;
 @Entity(name = "Category")
 @Table(name = "category")
 @Cacheable
-
-
 public class Category extends PanacheEntityBase {
 
     @Id
@@ -17,5 +15,5 @@ public class Category extends PanacheEntityBase {
 
     @Column(name = "category")
     public String category;
-    
+
 }
