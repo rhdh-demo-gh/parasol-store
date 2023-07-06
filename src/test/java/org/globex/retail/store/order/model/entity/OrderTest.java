@@ -26,6 +26,7 @@ public class OrderTest {
     private Order buildOrder() {
         Order order = new Order();
         order.customer = "testcustomer";
+        order.status = "created";
         order.timestamp = Instant.parse("2023-01-31T09:00:00.0Z");
         OrderLineItem item1 = new OrderLineItem();
         item1.product = "product1";

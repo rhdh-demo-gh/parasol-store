@@ -45,6 +45,33 @@ public class OrderMapperTest {
         Order o = OrderMapper.toEntity(od);
         assertThat(o, notNullValue());
         assertThat(o.customer, is(od.getCustomer()));
+        assertThat(o.status, is(od.getStatus()));
+        assertThat(o.timestamp, is(od.getTimestamp()));
+        assertThat(o.shippingAddress, notNullValue());
+        assertThat(o.shippingAddress.name, is(od.getShippingAddress().getName()));
+        assertThat(o.shippingAddress.phone, is(od.getShippingAddress().getPhone()));
+        assertThat(o.shippingAddress.address1, is(od.getShippingAddress().getAddress1()));
+        assertThat(o.shippingAddress.address2, is(od.getShippingAddress().getAddress2()));
+        assertThat(o.shippingAddress.city, is(od.getShippingAddress().getCity()));
+        assertThat(o.shippingAddress.zipCode, is(od.getShippingAddress().getZip()));
+        assertThat(o.shippingAddress.state, is(od.getShippingAddress().getState()));
+        assertThat(o.shippingAddress.country, is(od.getShippingAddress().getCountry()));
+        assertThat(o.orderLineItems, notNullValue());
+        assertThat(o.orderLineItems.size(), is(2));
+        OrderLineItem orderLineItem = o.orderLineItems.get(0);
+        LineItemDto lineItemDto = od.getLineItems().stream().filter(li -> orderLineItem.product.equals(li.getProduct())).findFirst().orElse(null);
+        assertThat(lineItemDto, notNullValue());
+        assertThat(orderLineItem.price, is(lineItemDto.getPrice()));
+        assertThat(orderLineItem.quantity, is(lineItemDto.getQuantity()));
+    }
+
+    @Test
+    void testToEntityWithoutStatus() {
+        OrderDto od = buildOrderDtoWithoutStatus();
+        Order o = OrderMapper.toEntity(od);
+        assertThat(o, notNullValue());
+        assertThat(o.customer, is(od.getCustomer()));
+        assertThat(o.status, is("created"));
         assertThat(o.timestamp, is(od.getTimestamp()));
         assertThat(o.shippingAddress, notNullValue());
         assertThat(o.shippingAddress.name, is(od.getShippingAddress().getName()));
@@ -68,6 +95,7 @@ public class OrderMapperTest {
         Order order = new Order();
         order.id = 1;
         order.customer = "testcustomer";
+        order.status = "created";
         order.timestamp = Instant.parse("2023-01-31T09:00:00.0Z");
         OrderLineItem item1 = new OrderLineItem();
         item1.id = 1;
@@ -96,6 +124,34 @@ public class OrderMapperTest {
     }
 
     private OrderDto buildOrderDto() {
+        return OrderDto.builder()
+                .withCustomer("testcustomer")
+                .withStatus("shipped")
+                .withTimestamp(Instant.now())
+                .withShippingAddress(ShippingAddressDto.builder()
+                        .withName("john Doe")
+                        .withPhone("111 111 111")
+                        .withAddress2("1 Some Street")
+                        .withAddress2("")
+                        .withCity("New York")
+                        .withZip("12345")
+                        .withState("NY")
+                        .withCountry("USA")
+                        .build())
+                .withOrderLineItems(List.of(LineItemDto.builder()
+                                .withProduct("product1")
+                                .withPrice(8.99)
+                                .withQuantity(1)
+                                .build(),
+                        LineItemDto.builder()
+                                .withProduct("product2")
+                                .withPrice(18.99)
+                                .withQuantity(2)
+                                .build()))
+                .build();
+    }
+
+    private OrderDto buildOrderDtoWithoutStatus() {
         return OrderDto.builder()
                 .withCustomer("testcustomer")
                 .withTimestamp(Instant.now())

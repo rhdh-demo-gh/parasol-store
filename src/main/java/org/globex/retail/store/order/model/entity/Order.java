@@ -20,6 +20,9 @@ public class Order extends PanacheEntityBase {
     @Column(name = "customer_id")
     public String customer;
 
+    @Column(name = "order_status")
+    public String status;
+
     @Column(name = "order_ts")
     public Instant timestamp;
 

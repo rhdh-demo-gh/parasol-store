@@ -16,6 +16,7 @@ public class OrderMapper {
         }
         Order order = new Order();
         order.customer = orderDto.getCustomer();
+        order.status = orderDto.getStatus() == null? "created" : orderDto.getStatus();
         order.timestamp = orderDto.getTimestamp() == null? Instant.now() : orderDto.getTimestamp();
         ShippingAddressDto shippingAddress = orderDto.getShippingAddress();
         if (shippingAddress != null) {
@@ -51,6 +52,7 @@ public class OrderMapper {
         return OrderDto.builder()
                 .withId(order.id)
                 .withCustomer(order.customer)
+                .withStatus(order.status)
                 .withTimestamp(order.timestamp)
                 .withShippingAddress(shippingAddress == null? null : ShippingAddressDto.builder()
                         .withName(shippingAddress.name)

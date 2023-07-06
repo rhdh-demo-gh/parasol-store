@@ -9,6 +9,8 @@ public class OrderDto {
 
     private String customer;
 
+    private String status;
+
     private Instant timestamp;
 
     private ShippingAddressDto shippingAddress;
@@ -21,6 +23,10 @@ public class OrderDto {
 
     public String getCustomer() {
         return customer;
+    }
+
+    public String getStatus() {
+        return status;
     }
 
     public Instant getTimestamp() {
@@ -54,6 +60,11 @@ public class OrderDto {
 
         public Builder withCustomer(String customer) {
             orderDto.customer = customer;
+            return this;
+        }
+
+        public Builder withStatus(String status) {
+            orderDto.status = status;
             return this;
         }
 
