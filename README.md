@@ -1,3 +1,3 @@
-# globex-store
+# parasol-store
 
-monolith version of the Globex store application
+monolith version of the parasol store application
