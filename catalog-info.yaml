@@ -5,8 +5,8 @@ metadata:
   description: "Store application component for the Parasol project in the Red Hat PE Workshop"
   owner: redhat-pe-workshop
   annotations:
-    github.com/project-slug: redhat-pe-workshop/parasol-store-app
-    backstage.io/techdocs-ref: url:https://github.com/redhat-pe-workshop/parasol-store-app
+    argocd/app-selector: rhdh.app/name=parasol
+    github.com/project-slug: rhdh-demo-gh/parasol-store-app
   tags:
     - application
     - store
@@ -17,7 +17,7 @@ spec:
   lifecycle: experimental
   owner: redhat-pe-workshop
   system: parasol
-  repository: https://github.com/redhat-pe-workshop/parasol-store-app
+  repository: https://github.com/rhdh-demo-gh/parasol-store-app
   dependsOn:
     - component:default/parasol-db
   providesApis:
@@ -38,4 +38,4 @@ spec:
   lifecycle: experimental
   owner: redhat-pe-workshop
   definition: 
-    $text: https://github.com/OAI/OpenAPI-Specification/blob/main/examples/v3.0/api-with-examples.json
+    $text: https://github.com/OAI/OpenAPI-Specification/blob/main/examples/v3.0/api-with-examples.yaml
