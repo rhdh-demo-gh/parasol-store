@@ -7,6 +7,7 @@ metadata:
   annotations:
     argocd/app-selector: rhdh.app/name=parasol
     github.com/project-slug: rhdh-demo-gh/parasol-store-app
+    backstage.io/techdocs-ref: "dir:."
   tags:
     - application
     - store
