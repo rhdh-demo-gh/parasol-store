@@ -36,7 +36,7 @@ jobs:
           image: ${{ secrets.QUAY_ORGANISATION }}/parasol-store
           tags: latest ${{ github.sha }}
           containerfiles: |
-            .src/main/docker/Dockerfile.jvm
+            src/main/docker/Dockerfile.jvm
 
       - name: Push Image to quay.io
         id: push-to-quay
