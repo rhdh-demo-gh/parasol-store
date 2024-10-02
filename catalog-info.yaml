@@ -16,7 +16,7 @@ metadata:
 spec:
   type: service
   lifecycle: experimental
-  owner: redhat-pe-workshop
+  owner: group:rhdh-demo-gh/parasol
   system: parasol
   repository: https://github.com/rhdh-demo-gh/parasol-store-app
   dependsOn:
