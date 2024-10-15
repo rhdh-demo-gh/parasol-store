@@ -19,7 +19,7 @@ spec:
   system: parasol
   repository: https://github.com/rhdh-demo-gh/parasol-store-app
   dependsOn:
-    - component:default/parasol-db
+    - resource:default/parasol-db
   providesApis:
     - default/parasol-store-app-api
 ---
